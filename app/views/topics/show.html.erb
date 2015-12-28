@@ -13,3 +13,20 @@
   </li>
 <% end %>
 </ul>
+
+<%= form_for [@topic, @comment] do |f| %>
+
+<% if @comment.errors %>
+  <ul>
+  <% @comment.errors.full_messages.each do |e| %>
+    <li><%= e %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+  <div class="form-group">
+    <%= f.text_area :content, :class => "form-control" %>
+  </div>
+
+  <%= f.submit "新增留言", :class => "btn btn-primary" %>
+<% end %>

@@ -8,6 +8,9 @@ namespace :dev do
     User.delete_all
 
     users = []
+
+    users << User.create!( :email => "ihower@gmail.com", :fullname => "ihower C.", :username => "ihower", :password => "12345678" )
+
     10.times do
       users << User.create!( :fullname => Faker::Name.name, :email => Faker::Internet.email, :username => Faker::Internet.user_name, :password => "12345678" )
     end
