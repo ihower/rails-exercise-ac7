@@ -1,5 +1,9 @@
 <h1><%= @topic.title %></h1>
 
+<% if @topic.photo.exists? %>
+  <%= image_tag @topic.photo.url(:medium) %>
+<% end %>
+
 <%= simple_format @topic.content %>
 
 <h2>Comments list</h2>
