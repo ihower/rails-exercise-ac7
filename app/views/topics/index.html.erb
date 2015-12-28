@@ -1,12 +1,15 @@
 <h1>Topics list</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Title</th>
+    <th>Author</th>
   </tr>
 <% @topics.each do |t| %>
   <tr>
-    <th><%= link_to t.title, topic_path(t) %>
+    <td><%= link_to t.title, topic_path(t) %></td>
+    <td><%= t.user.display_name %></td>
+    <td><%= t.created_at.to_s(:short) %></td>
   </tr>
 <% end %>
 </table>
