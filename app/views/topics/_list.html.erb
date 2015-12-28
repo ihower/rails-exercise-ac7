@@ -1,0 +1,16 @@
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Time</th>
+  </tr>
+<% topics.each do |t| %>
+  <tr>
+    <td><%= link_to t.title, topic_path(t) %></td>
+    <td><%= link_to t.user.display_name, user_path(t.user) %></td>
+    <td><%= t.created_at.to_s(:short) %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= paginate topics %>

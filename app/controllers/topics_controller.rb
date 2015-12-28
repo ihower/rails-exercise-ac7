@@ -2,6 +2,9 @@ class TopicsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index, :show]
 
+  def about
+  end
+
   def index
     @topics = Topic.order("id DESC").page( params[:page] )
   end
