@@ -1,5 +1,19 @@
 <h1><%= @topic.title %></h1>
 
+<% like = @topic.find_my_like(current_user) %>
+<% if like %>
+  <%= link_to "Unlike", topic_like_path(@topic, like), :method => :delete, :class => "btn btn-danger" %>
+<% else %>
+  <%= link_to "Like", topic_likes_path(@topic), :method => :post, :class => "btn btn-default" %>
+<% end %>
+
+<p>
+Liked by
+<% @topic.liked_users.each do |u| %>
+  <%= link_to u.display_name, user_path(u) %>,
+<% end %>
+</p>
+
 <% if @topic.photo.exists? %>
   <%= image_tag @topic.photo.url(:medium) %>
 <% end %>

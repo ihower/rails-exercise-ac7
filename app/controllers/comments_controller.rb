@@ -16,10 +16,6 @@ class CommentsController < ApplicationController
 
   protected
 
-  def set_topic
-    @topic = Topic.find( params[:topic_id] )
-  end
-
   def comment_params
     params.require(:comment).permit(:content)
   end
