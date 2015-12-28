@@ -1,5 +1,12 @@
 <h1><%= @topic.title %></h1>
 
+<% if @topic.find_my_subscription(current_user) %>
+  <%= link_to "UnSubscribe", unsubscribe_topic_path(@topic), :method => :post, :class => "btn btn-danger" %>
+<% else %>
+  <%= link_to "Subscribe", subscribe_topic_path(@topic), :method => :post, :class => "btn btn-default" %>
+<% end %>
+
+
 <% like = @topic.find_my_like(current_user) %>
 <% if like %>
   <%= link_to "Unlike", topic_like_path(@topic, like), :method => :delete, :class => "btn btn-danger" %>

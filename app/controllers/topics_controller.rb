@@ -29,6 +29,21 @@ class TopicsController < ApplicationController
     end
   end
 
+  # POST /topics/:id/subscribe
+  def subscribe
+    @topic = Topic.find( params[:id] )
+    @topic.subscriptions.create!( :user => current_user )
+
+    redirect_to :back
+  end
+
+  def unsubscribe
+    @topic = Topic.find( params[:id] )
+    current_user.subscriptions.where( :topic_id => @topic.id ).destroy_all
+
+    redirect_to :back
+  end
+
   protected
 
   def topic_params
