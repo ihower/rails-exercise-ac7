@@ -15,6 +15,8 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem "paperclip"
 
+gem "rest-client"
+
 gem 'bootstrap-sass'
 
 gem 'kaminari'
