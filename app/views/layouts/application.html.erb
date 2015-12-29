@@ -22,6 +22,10 @@
     <% else %>
         <li><%= link_to('註冊', new_registration_path(:user)) %></li>
         <li><%= link_to('登入', new_session_path(:user)) %></li>
+
+        <li>
+        <%= link_to "登入 Facebook", user_omniauth_authorize_path(:facebook) %>
+        </li>
     <% end %>
     </ul>
 
