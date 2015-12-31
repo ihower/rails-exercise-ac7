@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  get "/jquery" => "welcome#jquery"
   get "/about" => "topics#about"
 
   resources :users

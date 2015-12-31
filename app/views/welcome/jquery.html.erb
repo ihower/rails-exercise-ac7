@@ -1,0 +1,48 @@
+<h1>jQuery Exercise</h1>
+
+<p><a href="#" id="add-fake-todo" class="btn btn-primary">Add todo</a></p>
+
+<p>
+  <input type="text" id="todo-input">
+  <input type="submit" id="todo-btn" class="btn btn-default btn-sm">
+</p>
+
+<ul id="todo-list">
+  <% @todos.each do |todo| %>
+    <li>
+      <%= todo %>
+      <span class="remove">
+        <a href="#">(remove)</a>
+      </span>
+    </li>
+  <% end %>
+</ul>
+
+<script>
+  $("#todo-btn").click(function(){
+    var input = $("#todo-input")
+    var t = input.val();
+
+    $("#todo-list").append(
+      '<li>' + t + ' <span class="remove"><a href="#">(remove)</a></span></li>'
+    )
+    input.val("");
+  })
+
+  $("#add-fake-todo").click(function(){
+    $("#todo-list").append(
+      '<li>Foobar <span class="remove"><a href="#">(remove)</a></span></li>'
+    )
+  })
+
+  //$(".remove").click(function(e){
+  //$(this).closest("li").remove();
+  //})
+  $("#todo-list").on("click", ".remove", function(e){
+    $(this).closest("li").remove();
+  })
+
+</script>
+
+
+
