@@ -29,21 +29,13 @@ Liked by
 
 <h2>Comments list</h2>
 
-<ul>
+<ul id="comment-list">
 <% @topic.comments.each do |c| %>
-  <li id="comment-<%= c.id %>">
-    <%= c.content %>
-    by <%= c.user.display_name %>
-    at <%= c.created_at.to_s(:short) %>
-
-    <% if current_user && c.user == current_user %>
-      <%= link_to "(Delete)", topic_comment_path(@topic, c), :method => :delete, :remote => true %>
-    <% end %>
-  </li>
+  <%= render :partial => "comments/comment", :locals => { :comment => c } %>
 <% end %>
 </ul>
 
-<%= form_for [@topic, @comment] do |f| %>
+<%= form_for [@topic, @comment], :remote => true do |f| %>
 
 <% if @comment.errors %>
   <ul>

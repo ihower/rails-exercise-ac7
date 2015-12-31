@@ -7,11 +7,20 @@ class CommentsController < ApplicationController
     @comment = Comment.new( comment_params )
     @comment.topic = @topic
     @comment.user = current_user
-    if @comment.save
-      redirect_to topic_path(@topic)
-    else
-      render "topics/show"
-    end
+
+    @comment.save
+
+    #if @comment.save
+    #  respond_to do |format|
+    #    format.html { redirect_to topic_path(@topic) }
+    #    format.js
+    #  end
+    #else
+    #  respond_to do |format|
+    #    format.html { render "topics/show" }
+    #    format.js
+    #  end
+    #end
   end
 
   def destroy

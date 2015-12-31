@@ -1,0 +1,9 @@
+<li id="comment-<%= comment.id %>">
+  <%= comment.content %>
+  by <%= comment.user.display_name %>
+  at <%= comment.created_at.to_s(:short) %>
+
+  <% if current_user && comment.user == current_user %>
+    <%= link_to "(Delete)", topic_comment_path(@topic, comment), :method => :delete, :remote => true %>
+  <% end %>
+</li>
