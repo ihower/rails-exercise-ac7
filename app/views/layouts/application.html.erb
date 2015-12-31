@@ -18,7 +18,9 @@
       <li>
         <%= link_to "JQuery exercise", jquery_path %>
       </li>
-
+      <li>
+        <%= link_to "Ajax exercise", ajax_path %>
+      </li>
     <% if current_user %>
         <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
         <li><%= link_to('修改密碼', edit_registration_path(:user)) %></li>

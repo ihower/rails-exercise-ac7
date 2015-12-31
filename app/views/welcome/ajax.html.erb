@@ -1,0 +1,58 @@
+<h1>Ajax Exercise</h1>
+
+<%= link_to "Ajax insert HTML", ajaxtest_path, :id => "ajaxhtml" %>
+
+<%= link_to "Ajax Script", ajaxtest_path, :id => "ajaxscript", :remote => true %>
+
+<%= link_to "Ajax JSON", ajaxtest_path, :id => "ajaxjson" %>
+
+<div id="content">
+  <%= render :partial => "todo", :locals => { :todos => ["A", "B", "C" ]} %>
+</div>
+
+<script id="main-template" type="text/template">
+    <h1>{{title}}</h1>
+    <h2>{{content}}</h2>
+</script>
+
+<script>
+
+  $("#ajaxjson").click(function(e){
+    e.preventDefault();
+
+    var template = $('#main-template').html();
+
+    var url = $(this).attr("href");
+    $.ajax(url, {
+      dataType: "json",
+      success: function(data) {
+        console.log(data);
+         var html = template.replace("{{title}}", data["title"] );
+        html = html.replace("{{content}}", data["content"]);
+        $("#content").html( html );
+      }
+    })
+  })
+
+
+  //$("#ajaxscript").click(function(e){
+  //  e.preventDefault();
+//
+  //  var url =  $(this).attr("href");
+  //  $.ajax(url, {
+  //    dataType: "script"
+  //  })
+  //})
+
+  $("#ajaxhtml").click(function(e){
+    e.preventDefault();
+
+    var url =  $(this).attr("href");
+    $.ajax(url, {
+      success: function(response) {
+        $("#content").append(response)
+      }
+    })
+  })
+
+</script>
