@@ -34,14 +34,20 @@ class TopicsController < ApplicationController
     @topic = Topic.find( params[:id] )
     @topic.subscriptions.create!( :user => current_user )
 
-    redirect_to :back
+    respond_to do |format|
+      format.html{ redirect_to :back }
+      format.js
+    end
   end
 
   def unsubscribe
     @topic = Topic.find( params[:id] )
     current_user.subscriptions.where( :topic_id => @topic.id ).destroy_all
 
-    redirect_to :back
+    respond_to do |format|
+      format.html{ redirect_to :back }
+      format.js { render "subscribe"}
+    end
   end
 
   protected

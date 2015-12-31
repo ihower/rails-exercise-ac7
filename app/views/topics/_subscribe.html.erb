@@ -1,0 +1,5 @@
+<% if @topic.find_my_subscription(current_user) %>
+  <%= link_to "UnSubscribe", unsubscribe_topic_path(@topic), :method => :post, :remote => true, :class => "btn btn-danger" %>
+<% else %>
+  <%= link_to "Subscribe", subscribe_topic_path(@topic), :method => :post, :remote => true, :class => "btn btn-default" %>
+<% end %>
