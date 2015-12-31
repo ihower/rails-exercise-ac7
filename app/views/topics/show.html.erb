@@ -31,10 +31,14 @@ Liked by
 
 <ul>
 <% @topic.comments.each do |c| %>
-  <li>
+  <li id="comment-<%= c.id %>">
     <%= c.content %>
     by <%= c.user.display_name %>
     at <%= c.created_at.to_s(:short) %>
+
+    <% if current_user && c.user == current_user %>
+      <%= link_to "(Delete)", topic_comment_path(@topic, c), :method => :delete, :remote => true %>
+    <% end %>
   </li>
 <% end %>
 </ul>
