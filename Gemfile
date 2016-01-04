@@ -48,6 +48,8 @@ group :development, :test do
 
   gem 'faker'
 
+  #  rails g rspec:install
+  gem 'rspec-rails'
 end
 
 group :development do
