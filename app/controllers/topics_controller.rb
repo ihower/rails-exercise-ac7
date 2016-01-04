@@ -6,7 +6,14 @@ class TopicsController < ApplicationController
   end
 
   def index
-    @topics = Topic.order("id DESC").page( params[:page] )
+    if params[:tag]
+      tag = Tag.find_by_name( params[:tag] )
+      @topics = tag.topics
+    else
+      @topics = Topic.all
+    end
+
+    @topics = @topics.order("id DESC").page( params[:page] )
   end
 
   def show
@@ -36,6 +43,19 @@ class TopicsController < ApplicationController
     end
   end
 
+  def edit
+    @topic = current_user.topics.find( params[:id] )
+  end
+
+  def update
+    @topic = current_user.topics.find( params[:id] )
+    if @topic.update( topic_params )
+      redirect_to topic_path(@topic)
+    else
+      render :edit
+    end
+  end
+
   # POST /topics/:id/subscribe
   def subscribe
     @topic = Topic.find( params[:id] )
@@ -60,7 +80,7 @@ class TopicsController < ApplicationController
   protected
 
   def topic_params
-    params.require(:topic).permit( :title, :content, :photo )
+    params.require(:topic).permit( :title, :content, :photo, :tag_list )
   end
 
 end
