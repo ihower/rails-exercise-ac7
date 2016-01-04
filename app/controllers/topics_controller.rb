@@ -12,6 +12,13 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find( params[:id] )
     @comment = Comment.new
+
+    unless cookies["view-topic-#{@topic.id}"]
+      cookies["view-topic-#{@topic.id}"] = "viewed"
+      @topic.views_count += 1
+      @topic.save!
+    end
+
   end
 
   def new

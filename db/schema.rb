@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229020744) do
+ActiveRecord::Schema.define(version: 20160104015823) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "topic_id"
@@ -47,12 +47,13 @@ ActiveRecord::Schema.define(version: 20151229020744) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "views_count",        default: 0
   end
 
   create_table "users", force: :cascade do |t|
