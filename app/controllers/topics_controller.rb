@@ -14,6 +14,16 @@ class TopicsController < ApplicationController
     end
 
     @topics = @topics.order("id DESC").page( params[:page] )
+
+    respond_to do |format|
+      format.html
+      format.json {
+        arr = @topics.map { |t|
+          { :id => t.id, :title => t.title }
+        }
+        render :json => { :data => arr }
+      }
+    end
   end
 
   def show
