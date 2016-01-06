@@ -20,8 +20,12 @@
   </div>
 
   <div class="form-group">
-    <%= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
-</div>
+    <%#= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
+
+    <%= f.label :group_ids %>
+    <%= f.select :group_ids, Group.all.map{ |c| [c.name, c.id] }, {}, :multiple => true %>
+
+  </div>
 
   <div class="form-group">
     <%= f.label :tag_list %>
@@ -40,3 +44,9 @@
 
   <%= f.submit "Submit", :class => "btn btn-primary" %>
 <% end %>
+
+
+<script>
+  $("#topic_category_id").select2();
+  $("#topic_group_ids").select2();
+</script>
