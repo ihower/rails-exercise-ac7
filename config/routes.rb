@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
+
+    post "login" => "auth#login"
+    post "logout" => "auth#logout"
+
     resources :topics # ApiV1::TopicsController
+
   end
 
   resources :people

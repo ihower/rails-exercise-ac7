@@ -1,5 +1,7 @@
 class ApiV1::TopicsController < ApiController
 
+  before_action :authenticate_user!, :only => [:create]
+
   # GET /api/v1/topics/:id
   def show
     @topic = Topic.find(params[:id])
@@ -18,7 +20,7 @@ class ApiV1::TopicsController < ApiController
   def create
     @topic = Topic.new( :title => params[:title],
                         :content => params[:content] )
-    # @topic.user = current_user
+    @topic.user = current_user
 
     if @topic.save
       render :json => { :id => @topic.id, :message => "OK" }
