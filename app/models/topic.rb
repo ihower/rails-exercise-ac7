@@ -14,6 +14,10 @@ class Topic < ActiveRecord::Base
   has_many :taggings
   has_many :tags, :through => :taggings
 
+  belongs_to :category
+  has_many :groupships
+  has_many :groups, :through => :groupships
+  
   has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 

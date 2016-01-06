@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106020942) do
+ActiveRecord::Schema.define(version: 20160106041354) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer  "topic_id"
@@ -22,6 +28,22 @@ ActiveRecord::Schema.define(version: 20160106020942) do
   end
 
   add_index "comments", ["topic_id"], name: "index_comments_on_topic_id"
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groupships", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "groupships", ["group_id"], name: "index_groupships_on_group_id"
+  add_index "groupships", ["topic_id"], name: "index_groupships_on_topic_id"
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
@@ -81,7 +103,10 @@ ActiveRecord::Schema.define(version: 20160106020942) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "views_count",        default: 0
+    t.integer  "category_id"
   end
+
+  add_index "topics", ["category_id"], name: "index_topics_on_category_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
