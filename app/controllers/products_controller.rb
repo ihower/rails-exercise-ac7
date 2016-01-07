@@ -16,8 +16,13 @@ class ProductsController < ApplicationController
 
     current_cart.add_line_item(@product)
 
-    flash[:notice] = "加入成功"
-    redirect_to :back
+    respond_to do |format|
+      format.html {
+        flash[:notice] = "加入成功"
+        redirect_to :back
+      }
+      format.js
+    end
   end
 
   def cancel
@@ -26,8 +31,14 @@ class ProductsController < ApplicationController
     line_item = current_cart.line_items.find_by( :product_id => @product.id )
     line_item.destroy
 
-    flash[:notice] = "移除成功"
-    redirect_to :back
+    respond_to do |format|
+      format.html {
+        flash[:notice] = "移除成功"
+        redirect_to :back
+      }
+      format.js { render "buy" }
+    end
+
   end
 
 end

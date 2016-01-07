@@ -11,7 +11,9 @@
 
 <p>你的購物車項目:</p>
 
-<%= render "cart" %>
+<div id="cart-content">
+  <%= render "cart" %>
+</div>
 
 <%= link_to "結帳", new_order_path, :class => "btn btn-primary" %>
 <hr>
@@ -25,7 +27,7 @@
     <br>
     $<%= number_with_delimiter( p.price ) %>
 
-    <%= link_to "買!", buy_product_path(p), :method => :post, :class => "btn btn-danger" %>
+    <%= link_to "買!", buy_product_path(p), :remote => true, :method => :post, :class => "btn btn-danger" %>
 </div>
 <% end %>
 
