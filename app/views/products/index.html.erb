@@ -1,0 +1,17 @@
+
+<% @products.each do |p| %>
+<div class="product-item">
+  <%= link_to product_path(p) do %>
+    <%= image_tag( p.image_url, :width => 100 ) %>
+    <br><%= p.name %>
+  <% end %>
+    <br>
+    $<%= number_with_delimiter( p.price ) %>
+
+    <%= link_to "買!", new_order_path( :product_id => p ), :class => "btn btn-danger" %>
+</div>
+<% end %>
+
+<div style="clear: both"></div>
+
+<%= paginate @products %>

@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :topics
   has_many :comments
-
+  has_many :orders
+  
   has_many :likes, :dependent => :destroy
   has_many :liked_topics, :through => :likes, :source => :topic
 
@@ -30,7 +31,7 @@ class User < ActiveRecord::Base
       nil
     end
   end
-  
+
   def get_fb_data
     j = RestClient.get "https://graph.facebook.com/v2.5/me", :params => { :access_token => self.fb_token, :fields => "id,name,email,picture" }
     JSON.parse(j)

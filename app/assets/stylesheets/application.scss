@@ -1,3 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "select2";
+
+.product-item {
+  border: 1px solid #dddddd;
+  float: left;
+  margin: 10px;
+}

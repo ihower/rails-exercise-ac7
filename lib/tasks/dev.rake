@@ -1,5 +1,13 @@
 namespace :dev do
 
+  task :fake_products => :environment do
+    Product.delete_all
+    
+    100.times do |i|
+      Product.create!( :name => Faker::Commerce.product_name, :price => rand(1000) * 10, :image_url => Faker::Avatar.image )
+    end
+  end
+
   task :generate_user_token => :environment do
     User.find_each do |u|
       puts "generate user #{u.id} token"

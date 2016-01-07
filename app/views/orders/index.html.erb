@@ -1,0 +1,20 @@
+<h1>我的訂單一覽</h1>
+
+<table class="table">
+  <tr>
+    <th>訂單編號</th>
+    <th>細目</th>
+    <th>總金額</th>
+  </tr>
+<% @orders.each do |o| %>
+  <tr>
+    <td><%= o.id %></td>
+    <td>
+      <% o.line_items.each do |line| %>
+        <%= line.product.name %>: <%= line.qty %> 筆
+      <% end %>
+    </td>
+    <td>$<%= o.amount %></td>
+  </tr>
+<% end %>
+</table>
