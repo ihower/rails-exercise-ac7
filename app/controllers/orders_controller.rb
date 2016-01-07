@@ -17,13 +17,7 @@ class OrdersController < ApplicationController
     @order = Order.new( order_params )
     @order.user = current_user
 
-    amount = 0
-    @current_cart.line_items.each do |line|
-      @order.line_items.build( :product => line.product, :qty => line.qty )
-      amount += line.product.price * line.qty
-    end
-
-    @order.amount = amount
+    @order.add_line_items(current_cart)
 
     if @order.save
       redirect_to orders_path

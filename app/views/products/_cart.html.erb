@@ -1,8 +1,12 @@
 <ul>
-<% @current_cart.line_items.each do |line| %>
+<% current_cart.line_items.each do |line| %>
   <li>
-    <%= line.product.name %> x <%= line.qty %> = <%= line.product.price * line.qty %>
+    <%= line.product.name %> x <%= line.qty %> = <%= line.amount %>
     <%= link_to "[x]", cancel_product_path(line.product), :method => :post %>
   </li>
 <% end %>
 </ul>
+
+<% current_cart %>
+<% current_cart %>
+<% current_cart %>
