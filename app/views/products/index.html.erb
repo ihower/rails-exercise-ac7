@@ -1,3 +1,14 @@
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :name_cont %>
+  <%= f.search_field :name_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= sort_link(@q, :name) %>
+<%= sort_link(@q, :price) %>
+
 <p>你的購物車項目:</p>
 
 <%= render "cart" %>
