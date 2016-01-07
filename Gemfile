@@ -14,6 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'ransack'
+gem 'nested_form_fields'
 
 gem "select2-rails"
 

@@ -42,6 +42,18 @@
     <%= f.text_area :content, :class => "form-control" %>
   </div>
 
+  <hr>
+
+
+  <%= f.nested_fields_for :comments do |ff| %>
+    <div class="form-group">
+      <%= ff.label :content %>
+      <%= ff.text_field :content %>
+      <%= ff.remove_nested_fields_link %>
+    </div>
+  <% end %>
+  <p><%= f.add_nested_fields_link :comments %></p>
+
   <%= f.submit "Submit", :class => "btn btn-primary" %>
 <% end %>
 

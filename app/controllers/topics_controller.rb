@@ -40,6 +40,7 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
+    @topic.comments.build
   end
 
   def create
@@ -90,7 +91,7 @@ class TopicsController < ApplicationController
   protected
 
   def topic_params
-    params.require(:topic).permit( :title, :content, :photo, :tag_list, :category_id, :group_ids => [] )
+    params.require(:topic).permit( :title, :content, :photo, :tag_list, :category_id, :group_ids => [], :comments_attributes => [:content, :id, :_destroy] )
   end
 
 end

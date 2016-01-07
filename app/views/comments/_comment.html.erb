@@ -1,6 +1,6 @@
 <li id="comment-<%= comment.id %>">
   <%= comment.content %>
-  by <%= comment.user.display_name %>
+  by <%= comment.user.try(:display_name) %>
   at <%= comment.created_at.to_s(:short) %>
 
   <% if current_user && comment.user == current_user %>
