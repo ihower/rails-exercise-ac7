@@ -20,6 +20,8 @@ class OrdersController < ApplicationController
     @order.add_line_items(current_cart)
 
     if @order.save
+      session[:cart_id] = nil
+      
       redirect_to orders_path
     else
       render "new"
