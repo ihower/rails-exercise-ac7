@@ -1,12 +1,8 @@
-<h1>買 <%= @product.name %>: $<%= @product.price %></h1>
+<h1>新訂單</h1>
 
 <%= form_for @order do |f| %>
 
-<%= hidden_field_tag :product_id, @product.id %>
-<div class="form-group">
-  <%= label_tag :qty, "數量" %>
-  <%= select_tag :qty, options_for_select( (1..10).to_a ) %>
-</div>
+<%= render "products/cart" %>
 
 <div class="form-group">
   <%= f.label :name %>

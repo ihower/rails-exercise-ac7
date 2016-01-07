@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @product = Product.find( params[:product_id] )
 
     @order.name = current_user.fullname
     @order.email = current_user.email
@@ -16,12 +15,15 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new( order_params )
-    @product = Product.find( params[:product_id] )
-
     @order.user = current_user
 
-    @order.line_items.build( :product => @product, :qty => params[:qty].to_i )
-    @order.amount = @product.price * params[:qty].to_i
+    amount = 0
+    @current_cart.line_items.each do |line|
+      @order.line_items.build( :product => line.product, :qty => line.qty )
+      amount += line.product.price * line.qty
+    end
+
+    @order.amount = amount
 
     if @order.save
       redirect_to orders_path

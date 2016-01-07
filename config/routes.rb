@@ -9,7 +9,13 @@ Rails.application.routes.draw do
 
   end
 
-  resources :products
+  resources :products do
+    member do
+      post :buy
+      post :cancel
+    end
+  end
+
   resources :orders
 
   resources :people
