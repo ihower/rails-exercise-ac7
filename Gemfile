@@ -57,6 +57,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+gem 'mysql2'
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
