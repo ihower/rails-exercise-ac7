@@ -8,7 +8,7 @@
   </tr>
 <% @orders.each do |o| %>
   <tr>
-    <td><%= o.id %></td>
+    <td><%= link_to o.id, order_path(o) %></td>
     <td>
       <% o.line_items.each do |line| %>
         <%= line.product.name %>: <%= line.qty %> 筆

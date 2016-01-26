@@ -1,0 +1,15 @@
+<h1>我的訂單 #<%= @order.id %></h1>
+
+<% if @order.paid? %>
+
+  <p>已付款成功</p>
+
+<% else %>
+
+  <p>
+  <% Payment::PAYMENT_METHODS.each do |pm| %>
+    <%= link_to t(pm, :scope => "PaymentPay2go"), checkout_pay2go_order_path(@order, :payment_method => pm), :class => "btn btn-primary btn-lg", :method => :post %>
+  <% end %>
+  </p>
+
+<% end %>
