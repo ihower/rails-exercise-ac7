@@ -5,6 +5,8 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :line_items
 
+  has_many :payments
+
   def add_line_items(cart)
     cart.line_items.each do |line|
       self.line_items.build( :product => line.product, :qty => line.qty )
